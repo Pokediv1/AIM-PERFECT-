@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#08080f">
+<meta name="description" content="Free and Premium CODM configs by Red-Union">
+<title>AIM PERFECT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#08080f;--card:#0f0f1b;--border:rgba(255,255,255,.07);
+  --red:#e31c2e;--rg:rgba(227,28,46,.3);
+  --gold:#ffc940;--gold2:#ff9500;
+  --green:#00ffaa;
+  --txt:#f0f0fa;--sub:#52526a;--r:16px
+}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:'Outfit',sans-serif;font-size:16px;line-height:1.5;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+  background:rgba(8,8,15,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(227,28,46,.1)
+}
+.brand{font-weight:900;font-size:18px;letter-spacing:-.03em;color:var(--txt);text-decoration:none;line-height:1}
+.brand-tm{font-size:9px;font-weight:400;color:var(--sub);vertical-align:super;letter-spacing:0}
+.gold-pill{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;
+  font-weight:700;font-size:13px;padding:8px 16px;border-radius:100px;
+  border:none;cursor:pointer;text-decoration:none;display:inline-block;
+  white-space:nowrap;transition:opacity .15s;-webkit-tap-highlight-color:transparent
+}
+.gold-pill:active{opacity:.75}
+
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:78px 18px 50px;position:relative;overflow:hidden
+}
+.blob1{
+  position:absolute;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(227,28,46,.14) 0%,transparent 65%);
+  top:-170px;left:50%;transform:translateX(-50%);pointer-events:none
+}
+.blob2{
+  position:absolute;width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,rgba(180,10,20,.08) 0%,transparent 65%);
+  bottom:-80px;left:50%;transform:translateX(-50%);pointer-events:none
+}
+.kicker{
+  display:flex;align-items:center;gap:6px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:.2em;color:rgba(255,100,100,.55);
+  text-transform:uppercase;margin-bottom:18px;
+  opacity:0;animation:up .5s .05s forwards
+}
+.kicker .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 8px var(--red);
+  animation:pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.htitle{
+  font-weight:900;font-size:clamp(56px,16vw,98px);
+  line-height:.86;letter-spacing:-.05em;margin-bottom:18px;
+  opacity:0;animation:up .5s .15s forwards
+}
+.htitle .t1{display:block;color:var(--txt)}
+.htitle .t2{display:block;color:transparent;-webkit-text-stroke:2.5px var(--red)}
+.htitle .tm{
+  font-size:.22em;letter-spacing:0;
+  color:rgba(255,255,255,.1);-webkit-text-stroke:.5px rgba(255,255,255,.08);vertical-align:super
+}
+.hdesc{
+  font-size:14.5px;font-weight:400;color:var(--sub);
+  max-width:300px;margin:0 auto 28px;
+  opacity:0;animation:up .5s .24s forwards
+}
+.hdesc b{color:rgba(255,255,255,.65);font-weight:600}
+.hbtns{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:36px;opacity:0;animation:up .5s .32s forwards
+}
+.btn-red{
+  background:var(--red);color:#fff;font-family:'Outfit',sans-serif;
+  font-weight:700;font-size:15px;padding:14px 28px;border-radius:100px;
+  border:none;cursor:pointer;box-shadow:0 4px 26px var(--rg);
+  transition:transform .12s,box-shadow .12s;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent
+}
+.btn-red:active{transform:scale(.96);box-shadow:0 2px 12px var(--rg)}
+.btn-ghost{
+  background:transparent;color:var(--txt);font-family:'Outfit',sans-serif;
+  font-weight:600;font-size:15px;padding:14px 28px;border-radius:100px;
+  border:1.5px solid rgba(255,255,255,.12);cursor:pointer;
+  transition:transform .12s,border-color .12s;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent
+}
+.btn-ghost:active{transform:scale(.96);border-color:rgba(255,255,255,.28)}
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid rgba(227,28,46,.13);border-radius:14px;
+  overflow:hidden;max-width:380px;width:100%;
+  opacity:0;animation:up .5s .4s forwards
+}
+.stat{padding:12px 4px;text-align:center;border-right:1px solid rgba(255,255,255,.05)}
+.stat:last-child{border-right:none}
+.stat-n{display:block;font-weight:900;font-size:19px;line-height:1;color:var(--red)}
+.stat-l{
+  display:block;font-family:'JetBrains Mono',monospace;
+  font-size:7.5px;letter-spacing:.1em;color:var(--sub);text-transform:uppercase;margin-top:3px
+}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hr{height:1px;background:linear-gradient(90deg,transparent,rgba(227,28,46,.22) 50%,transparent)}
+
+.sec{max-width:680px;margin:0 auto;padding:54px 14px}
+.ey{
+  display:flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:.2em;color:rgba(255,100,100,.5);text-transform:uppercase;margin-bottom:8px
+}
+.ey .updated{
+  font-size:9px;letter-spacing:.1em;color:var(--sub);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  padding:2px 8px;border-radius:6px;text-transform:none;
+}
+.sh{font-weight:800;font-size:clamp(22px,6.5vw,32px);letter-spacing:-.025em;line-height:1;margin-bottom:10px}
+.sb{font-size:13px;color:var(--sub);margin-bottom:22px;line-height:1.65}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+@media(min-width:460px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:680px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+.cc{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:border-color .2s,transform .15s;-webkit-tap-highlight-color:transparent
+}
+.cc:active{transform:scale(.97)}
+.cc.unlocked{border-color:rgba(227,28,46,.22)}
+.cc-new::after{
+  content:'NEW';position:absolute;top:9px;right:0;
+  background:var(--red);color:#fff;font-family:'JetBrains Mono',monospace;
+  font-size:7px;letter-spacing:.1em;padding:3px 8px;border-radius:3px 0 0 3px
+}
+.cb{padding:13px 11px 9px;flex:1}
+.ci{
+  width:34px;height:34px;border-radius:9px;
+  background:rgba(227,28,46,.08);border:1px solid rgba(227,28,46,.12);
+  display:flex;align-items:center;justify-content:center;font-size:11px;margin-bottom:8px;
+  color:var(--red);font-weight:800;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;
+}
+.cn{font-weight:800;font-size:12.5px;margin-bottom:2px;letter-spacing:-.01em}
+.cd{font-size:10.5px;color:var(--sub);margin-bottom:7px;line-height:1.4}
+.ctags{display:flex;flex-wrap:wrap;gap:3px}
+.ct{
+  font-size:8.5px;padding:2px 6px;border-radius:4px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.32)
+}
+.cf{padding:9px 11px;border-top:1px solid rgba(255,255,255,.05)}
+.ccbtn{
+  width:100%;padding:10px 6px;border-radius:9px;border:none;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:11.5px;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:opacity .12s,transform .12s
+}
+.ccbtn:active{transform:scale(.96)}
+.blk{background:rgba(255,255,255,.04);color:var(--sub);border:1px solid rgba(255,255,255,.07)}
+.bopen{background:var(--red);color:#fff;box-shadow:0 2px 14px rgba(227,28,46,.22)}
+.bopen:active{opacity:.82}
+
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+@media(min-width:460px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:680px){.feat-grid{grid-template-columns:repeat(4,1fr)}}
+.fcard{
+  background:var(--card);border:1px solid var(--border);border-radius:13px;
+  padding:13px 11px;transition:border-color .2s,transform .15s;
+  -webkit-tap-highlight-color:transparent
+}
+.fcard:active{transform:scale(.97)}
+.fic{
+  width:32px;height:32px;border-radius:9px;
+  background:rgba(0,255,170,.07);border:1px solid rgba(0,255,170,.13);
+  display:flex;align-items:center;justify-content:center;font-size:11px;margin-bottom:8px;
+  color:var(--green);font-weight:800;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;
+}
+.fname{font-weight:800;font-size:12px;margin-bottom:3px;letter-spacing:-.01em}
+.fdesc{font-size:10.5px;color:var(--sub);line-height:1.45}
+
+.overlay{
+  position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.8);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:flex-end;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .22s
+}
+.overlay.on{opacity:1;pointer-events:all}
+.sheet{
+  width:100%;max-width:520px;background:var(--card);
+  border:1px solid rgba(255,255,255,.07);border-radius:22px 22px 0 0;
+  padding-bottom:max(32px,env(safe-area-inset-bottom));
+  transform:translateY(100%);transition:transform .34s cubic-bezier(.16,1,.3,1)
+}
+.overlay.on .sheet{transform:translateY(0)}
+.shandle{width:30px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin:13px auto 0}
+.shd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 2px}
+.sttl{font-weight:800;font-size:16px;letter-spacing:-.01em}
+.sclose{
+  width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.06);
+  border:none;color:var(--sub);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent
+}
+.sclose:active{background:rgba(255,255,255,.12)}
+.sinfo{font-size:12px;color:var(--sub);padding:2px 16px 12px;line-height:1.6}
+.spbar{height:2px;background:rgba(255,255,255,.06);margin:0 16px 14px;border-radius:1px;overflow:hidden}
+.spfill{height:100%;width:0%;background:linear-gradient(90deg,#00cc88,var(--green));border-radius:1px;transition:width .4s cubic-bezier(.16,1,.3,1)}
+.sbd{padding:0 12px}
+.trow{
+  display:flex;align-items:center;gap:11px;padding:12px;border-radius:12px;
+  background:var(--bg);border:1.5px solid rgba(255,255,255,.06);margin-bottom:8px;
+  text-decoration:none;color:var(--txt);-webkit-tap-highlight-color:transparent;
+  transition:border-color .18s
+}
+.trow.done{border-color:rgba(0,255,170,.26);background:rgba(0,255,170,.04)}
+.tico{
+  width:40px;height:40px;border-radius:11px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:11px;
+  font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:.04em;
+}
+.tg-bg{background:rgba(0,136,204,.1);border:1px solid rgba(0,136,204,.16);color:#44aadd}
+.yt-bg{background:rgba(255,0,0,.08);border:1px solid rgba(255,0,0,.14);color:#ff5555}
+.tt-bg{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#dddddd}
+.ttxt{flex:1;min-width:0}
+.tname{font-weight:700;font-size:13px;margin-bottom:1px}
+.thint{font-size:11px;color:var(--sub)}
+.tchk{
+  width:24px;height:24px;border-radius:50%;flex-shrink:0;
+  border:1.5px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;transition:all .18s
+}
+.trow.done .tchk{background:var(--green);border-color:var(--green);color:#000}
+.vbtns{display:flex;flex-direction:column;gap:6px;margin:10px 0 8px}
+.vbtn{
+  width:100%;padding:12px;border-radius:11px;border:none;
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:opacity .12s,transform .12s
+}
+.vbtn:active{transform:scale(.97)}
+.vbtn:disabled{opacity:.3;cursor:not-allowed;transform:none!important}
+.vtg{background:rgba(0,136,204,.12);color:#44aadd;border:1px solid rgba(0,136,204,.18)}
+.vyt{background:rgba(255,0,0,.1);color:#ff5555;border:1px solid rgba(255,0,0,.14)}
+.vtt{background:rgba(255,255,255,.06);color:#dddddd;border:1px solid rgba(255,255,255,.14)}
+.dlbtn{
+  width:100%;padding:15px;border-radius:12px;border:none;
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  background:rgba(255,255,255,.05);color:rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.07);pointer-events:none;transition:all .26s
+}
+.dlbtn.go{background:var(--red);color:#fff;pointer-events:all;box-shadow:0 4px 26px var(--rg);border-color:transparent}
+.dlbtn.go:active{transform:scale(.97)}
+
+.pbox{
+  background:linear-gradient(145deg,#0d0d1e,#180e28);
+  border:1px solid rgba(255,201,64,.14);border-radius:var(--r);
+  padding:22px 16px;position:relative;overflow:hidden
+}
+.pbox::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,201,64,.42),transparent)
+}
+.phd{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.pico{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  background:rgba(255,201,64,.1);border:1px solid rgba(255,201,64,.16);
+  display:flex;align-items:center;justify-content:center;font-size:11px;
+  color:var(--gold);font-weight:800;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;
+}
+.pey{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.17em;color:rgba(255,201,64,.48);text-transform:uppercase;margin-bottom:3px}
+.pname{font-weight:900;font-size:18px;letter-spacing:-.02em;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pdesc{font-size:13px;color:var(--sub);margin-bottom:15px;line-height:1.6}
+.plist{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.pli{
+  display:flex;align-items:flex-start;gap:10px;font-size:12.5px;
+  padding:9px 11px;border-radius:10px;line-height:1.45;
+  background:rgba(255,201,64,.04);border:1px solid rgba(255,201,64,.07)
+}
+.pli::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px;box-shadow:0 0 6px var(--gold)}
+.pcta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:14px;border-radius:12px;border:none;
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;
+  text-decoration:none;cursor:pointer;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;transition:opacity .12s,transform .12s
+}
+.pcta:active{opacity:.8;transform:scale(.98)}
+.pnote{font-size:11px;color:var(--sub);text-align:center;margin-top:8px}
+
+footer{padding:40px 18px 32px;text-align:center;border-top:1px solid rgba(255,255,255,.04)}
+.fbrand{font-weight:900;font-size:17px;letter-spacing:-.02em;color:var(--txt);margin-bottom:12px}
+.fbrand small{color:var(--sub);font-weight:400;font-size:12px;letter-spacing:0}
+.flinks{display:flex;gap:0;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.flinks a{font-size:14px;color:var(--sub);text-decoration:none;padding:6px 13px;-webkit-tap-highlight-color:transparent;transition:color .15s}
+.flinks a:active{color:var(--txt)}
+.fcopy{font-size:11px;color:rgba(255,255,255,.1);margin-bottom:4px}
+.fupdated{font-size:10px;color:rgba(255,255,255,.08);font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
+
+.rev{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.rev.show{opacity:1;transform:none}
+.r1{transition-delay:.06s}.r2{transition-delay:.12s}.r3{transition-delay:.18s}
+
+.toast{
+  position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;
+  transform:translateX(-50%) translateY(50px);z-index:400;
+  padding:10px 20px;border-radius:100px;font-family:'Outfit',sans-serif;
+  font-weight:700;font-size:13px;white-space:nowrap;pointer-events:none;opacity:0;
+  transition:transform .32s cubic-bezier(.16,1,.3,1),opacity .22s
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.tgreen{background:var(--green);color:#000}
+.torange{background:#ff9500;color:#000}
+.tdark{background:#1e1e2e;color:var(--txt);border:1px solid rgba(255,255,255,.1)}
+@keyframes rot{to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:rot .7s linear infinite}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<nav>
+  <a class="brand" href="#">AIM PERFECT<span class="brand-tm">TM</span></a>
+  <a class="gold-pill" href="#premium">Premium</a>
+</nav>
+
+<section class="hero">
+  <div class="blob1"></div>
+  <div class="blob2"></div>
+  <span class="kicker"><span class="dot"></span>AIM PERFECT - Config Hub</span>
+  <h1 class="htitle">
+    <span class="t1">AIM</span>
+    <span class="t2">PERFECT<span class="tm">TM</span></span>
+  </h1>
+  <p class="hdesc"><b>Free &amp; Premium</b> CODM configs.<br>Better aim. Smoother feel.</p>
+  <div class="hbtns">
+    <button class="btn-red" onclick="document.getElementById('configs').scrollIntoView({behavior:'smooth'})">Get Free Configs</button>
+    <button class="btn-ghost" onclick="document.getElementById('premium').scrollIntoView({behavior:'smooth'})">Premium</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="stat-n">11</span><span class="stat-l">Free Packs</span></div>
+    <div class="stat"><span class="stat-n">29</span><span class="stat-l">Weapons</span></div>
+    <div class="stat"><span class="stat-n">Free</span><span class="stat-l">Always</span></div>
+    <div class="stat"><span class="stat-n">Pro</span><span class="stat-l">Premium</span></div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<section id="configs" style="background:var(--bg);padding:0">
+<div class="sec">
+  <span class="ey rev">Free Configs <span class="updated">Updated June 2026</span></span>
+  <h2 class="sh rev r1">Pick Your Pack</h2>
+  <p class="sb rev r2">Each pack is free. Tap one, complete 2 quick tasks, then download.</p>
+  <div class="grid rev r3" id="cfg-grid">
+
+    <div class="cc" id="card-c1">
+      <div class="cb"><div class="ci">TGT</div>
+        <div class="cn">Config Pack 1</div><div class="cd">Core aim & recoil</div>
+        <div class="ctags"><span class="ct">Aim</span><span class="ct">Recoil</span><span class="ct">ADS</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c1" onclick="openSheet('c1')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c2">
+      <div class="cb"><div class="ci">BLT</div>
+        <div class="cn">Config Pack 2</div><div class="cd">Better tracking</div>
+        <div class="ctags"><span class="ct">Aim</span><span class="ct">Stability</span><span class="ct">FPS</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c2" onclick="openSheet('c2')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c3">
+      <div class="cb"><div class="ci">FIR</div>
+        <div class="cn">Config Pack 3</div><div class="cd">Spray & hip fire</div>
+        <div class="ctags"><span class="ct">Spray</span><span class="ct">Hip Fire</span><span class="ct">Scope</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c3" onclick="openSheet('c3')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c4">
+      <div class="cb"><div class="ci">GEM</div>
+        <div class="cn">Config Pack 4</div><div class="cd">Balanced all-round</div>
+        <div class="ctags"><span class="ct">Aim</span><span class="ct">Recoil</span><span class="ct">Sensitivity</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c4" onclick="openSheet('c4')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c5">
+      <div class="cb"><div class="ci">CTL</div>
+        <div class="cn">Config Pack 5</div><div class="cd">Refined engine</div>
+        <div class="ctags"><span class="ct">Aim</span><span class="ct">ADS Speed</span><span class="ct">FPS</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c5" onclick="openSheet('c5')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c6">
+      <div class="cb"><div class="ci">NEW</div>
+        <div class="cn">Config Pack 6</div><div class="cd">Latest & best yet</div>
+        <div class="ctags"><span class="ct">All Features</span><span class="ct">29 Guns</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c6" onclick="openSheet('c6')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c7">
+      <div class="cb"><div class="ci">V16</div>
+        <div class="cn">Config Pack 7</div><div class="cd">Smoother flick aim</div>
+        <div class="ctags"><span class="ct">AimAssist</span><span class="ct">HeadshotPriority</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c7" onclick="openSheet('c7')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c8">
+      <div class="cb"><div class="ci">V17</div>
+        <div class="cn">Config Pack 8</div><div class="cd">Tighter target lock</div>
+        <div class="ctags"><span class="ct">AimLock</span><span class="ct">LockStrength</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c8" onclick="openSheet('c8')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c9">
+      <div class="cb"><div class="ci">V18</div>
+        <div class="cn">Config Pack 9</div><div class="cd">Sprint & pivot tuned</div>
+        <div class="ctags"><span class="ct">SprintFireCorrection</span><span class="ct">SmartPivot</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c9" onclick="openSheet('c9')">Unlock</button></div>
+    </div>
+
+    <div class="cc" id="card-c10">
+      <div class="cb"><div class="ci">V19</div>
+        <div class="cn">Config Pack 10</div><div class="cd">Crit & hitbox boost</div>
+        <div class="ctags"><span class="ct">HitboxExpansion</span><span class="ct">CriticalHitBoost</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c10" onclick="openSheet('c10')">Unlock</button></div>
+    </div>
+
+    <div class="cc cc-new" id="card-c11">
+      <div class="cb"><div class="ci">V20</div>
+        <div class="cn">Config Pack 11</div><div class="cd">Fastest input response</div>
+        <div class="ctags"><span class="ct">InputLatency</span><span class="ct">ScopeStabilizer</span></div>
+      </div>
+      <div class="cf"><button class="ccbtn blk" id="cbtn-c11" onclick="openSheet('c11')">Unlock</button></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="hr"></div>
+
+<section id="features" style="background:#0a0a14;padding:0">
+<div class="sec">
+  <span class="ey rev">Whats Inside</span>
+  <h2 class="sh rev r1">Config Features</h2>
+  <p class="sb rev r2">Every pack includes a tuned set of features designed to feel natural, not robotic.</p>
+  <div class="feat-grid rev r3">
+
+    <div class="fcard">
+      <div class="fic">AA</div>
+      <div class="fname">AimAssist</div>
+      <div class="fdesc">Helps your crosshair stay glued to moving targets for smoother tracking.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">AL</div>
+      <div class="fname">AimLock</div>
+      <div class="fdesc">Locks onto the nearest enemy hitbox so you stay on target longer.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">RC</div>
+      <div class="fname">RecoilControl</div>
+      <div class="fdesc">Reduces weapon kick so spray patterns stay tighter and more controllable.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">HP</div>
+      <div class="fname">HeadshotPriority</div>
+      <div class="fdesc">Shifts aim bias slightly upward toward the head hitbox when tracking.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">AC</div>
+      <div class="fname">AutoCorrect</div>
+      <div class="fdesc">Applies small real-time corrections to keep your crosshair centered.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">TM</div>
+      <div class="fname">TargetMagnetism</div>
+      <div class="fdesc">Creates a soft pull that keeps your aim near enemies as they move.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">MP</div>
+      <div class="fname">MovementPrediction</div>
+      <div class="fdesc">Predicts where a moving target is heading for better lead shots.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">HL</div>
+      <div class="fname">HardLock</div>
+      <div class="fdesc">A stronger lock mode for close-range fights where speed matters most.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">GT</div>
+      <div class="fname">GhostTracking</div>
+      <div class="fdesc">Keeps tracking briefly even when a target is hidden behind cover.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">SS</div>
+      <div class="fname">ScopeStabilizer</div>
+      <div class="fdesc">Reduces scope sway so your aim stays steady while zoomed in.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">LS</div>
+      <div class="fname">LockStrength</div>
+      <div class="fdesc">Master setting controlling how strong the overall aim lock feels.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">SF</div>
+      <div class="fname">SprintFireCorrection</div>
+      <div class="fdesc">Fixes aim drift caused by switching from sprinting to firing.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">SP</div>
+      <div class="fname">SmartPivotCorrection</div>
+      <div class="fdesc">Smooths out aim during quick direction changes and turns.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">HE</div>
+      <div class="fname">HitboxExpansion</div>
+      <div class="fdesc">Slightly widens hit detection zones for more consistent hits.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">CB</div>
+      <div class="fname">CriticalHitBoost</div>
+      <div class="fdesc">Increases the chance of landing critical hits on weak points.</div>
+    </div>
+
+    <div class="fcard">
+      <div class="fic">IL</div>
+      <div class="fname">InputLatencyReducer</div>
+      <div class="fdesc">Cuts down delay between your touch input and in-game response.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="hr"></div>
+
+<section id="premium" style="background:var(--bg);padding:0">
+<div class="sec">
+  <span class="ey rev">Premium</span>
+  <h2 class="sh rev r1" style="background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Premium Configs</h2>
+  <div class="rev r2">
+  <div class="pbox">
+    <div class="phd">
+      <div class="pico">VIP</div>
+      <div><div class="pey">Exclusive</div><div class="pname">ULTRA CONFIG PACK</div></div>
+    </div>
+    <p class="pdesc">The most advanced version, privately sent to you. More refined than any free pack.</p>
+    <div class="plist">
+      <div class="pli">More refined aim smoothness than any free version</div>
+      <div class="pli">Individual configs for all 29 weapons</div>
+      <div class="pli">Multiple strength levels to match your style</div>
+      <div class="pli">Private updates before public release</div>
+      <div class="pli">Direct support from Red-Union</div>
+    </div>
+    <a href="https://t.me/Redunion1" target="_blank" rel="noopener" class="pcta">DM @Redunion1 on Telegram</a>
+    <p class="pnote">Ask about pricing &amp; availability</p>
+  </div>
+  </div>
+</div>
+</section>
+
+<div class="hr"></div>
+
+<footer>
+  <div class="fbrand">AIM PERFECT TM <small>by Red-Union</small></div>
+  <div class="flinks">
+    <a href="https://t.me/+re8tFFBQgY4wZTc1" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://youtube.com/@redunionagency?si=YoM6feKc2Y1Vu3ow" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://t.me/Redunion1" target="_blank" rel="noopener">Premium</a>
+  </div>
+  <p class="fcopy">(c) 2026 Red-Union</p>
+  <p class="fupdated">Last updated: June 2026</p>
+</footer>
+
+<div class="overlay" id="overlay">
+  <div class="sheet">
+    <div class="shandle"></div>
+    <div class="shd">
+      <div class="sttl" id="sttl">Unlock Config</div>
+      <button class="sclose" onclick="closeSheet()">X</button>
+    </div>
+    <p class="sinfo">Complete all 3 tasks to unlock this specific pack.</p>
+    <div class="spbar"><div class="spfill" id="spfill"></div></div>
+    <div class="sbd">
+      <a id="row-tg" class="trow" href="https://t.me/+re8tFFBQgY4wZTc1" target="_blank" rel="noopener" onclick="didOpen('tg')">
+        <div class="tico tg-bg">TG</div>
+        <div class="ttxt"><div class="tname">Join Telegram Channel</div><div class="thint" id="h-tg">Tap to open, then verify below</div></div>
+        <div class="tchk" id="chk-tg"></div>
+      </a>
+      <a id="row-yt" class="trow" href="https://youtube.com/@redunionagency?si=YoM6feKc2Y1Vu3ow" target="_blank" rel="noopener" onclick="didOpen('yt')">
+        <div class="tico yt-bg">YT</div>
+        <div class="ttxt"><div class="tname">Subscribe on YouTube</div><div class="thint" id="h-yt">Tap to open, then verify below</div></div>
+        <div class="tchk" id="chk-yt"></div>
+      </a>
+      <a id="row-tt" class="trow" href="https://tiktok.com/@uunknown576" target="_blank" rel="noopener" onclick="didOpen('tt')">
+        <div class="tico tt-bg">TT</div>
+        <div class="ttxt"><div class="tname">Follow on TikTok</div><div class="thint" id="h-tt">Tap to open, then verify below</div></div>
+        <div class="tchk" id="chk-tt"></div>
+      </a>
+      <div class="vbtns">
+        <button class="vbtn vtg" id="vbtn-tg" onclick="verify('tg')" disabled>I joined Telegram</button>
+        <button class="vbtn vyt" id="vbtn-yt" onclick="verify('yt')" disabled>I subscribed on YouTube</button>
+        <button class="vbtn vtt" id="vbtn-tt" onclick="verify('tt')" disabled>I followed on TikTok</button>
+      </div>
+      <button class="dlbtn" id="dlbtn" onclick="doDownload()">Complete tasks to unlock</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var C={
+  "c1":{n:"Config Pack 1",u:"https://www.mediafire.com/file/68eb9n9m5u7s2j3/Aim_Perfecr_Free_Config_v10.zip/file"},
+  "c2":{n:"Config Pack 2",u:"https://www.mediafire.com/file/mc1ftlhej8km5t2/Aim_Perfecr_Free_Config_v11.zip/file"},
+  "c3":{n:"Config Pack 3",u:"https://www.mediafire.com/file/d606krz5ysfs1l3/Aim_Perfecr_Free_Config_v12.zip/file"},
+  "c4":{n:"Config Pack 4",u:"https://www.mediafire.com/file/opekyyexrlbrw8t/Aim_Perfecr_Free_Config_v13.zip/file"},
+  "c5":{n:"Config Pack 5",u:"https://www.mediafire.com/file/as8y1fv80xjhfp3/Aim_Perfecr_Free_Config_v14.zip/file"},
+  "c6":{n:"Config Pack 6",u:"https://www.mediafire.com/file/5unn5uwns7o9088/Aim_Perfecr_Free_Config_v15.zip/file"},
+  "c7":{n:"Config Pack 7",u:"https://www.mediafire.com/file/uojlj11fy9ocqtb/AIM+PERFECF+FREE+CONFIG+v16.zip/file"},
+  "c8":{n:"Config Pack 8",u:"https://www.mediafire.com/file/vk86xu0cnih0y6w/AIM+PERFECT+FREE+CONFIG+v17.zip/file"},
+  "c9":{n:"Config Pack 9",u:"https://www.mediafire.com/file/6o4tkq5j9q2fi9m/AIM+PERFECT+FREE+CONFIG+v18.zip/file"},
+  "c10":{n:"Config Pack 10",u:"https://www.mediafire.com/file/tz7x08wntz9omop/AIM+PERFECT+FREE+CONFIG+v19.zip/file"},
+  "c11":{n:"Config Pack 11",u:"https://www.mediafire.com/file/0b5o33xn1e7fobx/AIM+PERFECT+FREE+CONFIG+v20.zip/file"}
+};
+var cur="";
+function gs(k){try{return JSON.parse(localStorage.getItem("ap_"+k)||"{}");}catch(e){return {};}}
+function ss(k,v){localStorage.setItem("ap_"+k,JSON.stringify(v));}
+function openSheet(k){
+  cur=k;
+  document.getElementById("sttl").textContent=C[k].n;
+  render();
+  document.getElementById("overlay").classList.add("on");
+  document.body.style.overflow="hidden";
+}
+function closeSheet(){
+  document.getElementById("overlay").classList.remove("on");
+  document.body.style.overflow="";
+}
+document.getElementById("overlay").addEventListener("click",function(e){if(e.target===this)closeSheet();});
+function render(){
+  var s=gs(cur),tg=!!s.tgDone,yt=!!s.ytDone,tt=!!s.ttDone;
+  var rtg=document.getElementById("row-tg"),ctg=document.getElementById("chk-tg"),vtg=document.getElementById("vbtn-tg");
+  if(tg){rtg.classList.add("done");ctg.textContent="OK";vtg.disabled=true;vtg.textContent="Telegram verified";vtg.style.opacity=".3";document.getElementById("h-tg").textContent="Verified";}
+  else{rtg.classList.remove("done");ctg.textContent="";var ot=!!s.tgOpened;vtg.disabled=!ot;vtg.style.opacity=ot?"1":".3";vtg.textContent="I joined Telegram";document.getElementById("h-tg").textContent="Tap to open, then verify below";}
+  var ryt=document.getElementById("row-yt"),cyt=document.getElementById("chk-yt"),vyt=document.getElementById("vbtn-yt");
+  if(yt){ryt.classList.add("done");cyt.textContent="OK";vyt.disabled=true;vyt.textContent="YouTube verified";vyt.style.opacity=".3";document.getElementById("h-yt").textContent="Verified";}
+  else{ryt.classList.remove("done");cyt.textContent="";var oy=!!s.ytOpened;vyt.disabled=!oy;vyt.style.opacity=oy?"1":".3";vyt.textContent="I subscribed on YouTube";document.getElementById("h-yt").textContent="Tap to open, then verify below";}
+  var rtt=document.getElementById("row-tt"),ctt=document.getElementById("chk-tt"),vtt=document.getElementById("vbtn-tt");
+  if(tt){rtt.classList.add("done");ctt.textContent="OK";vtt.disabled=true;vtt.textContent="TikTok verified";vtt.style.opacity=".3";document.getElementById("h-tt").textContent="Verified";}
+  else{rtt.classList.remove("done");ctt.textContent="";var ott=!!s.ttOpened;vtt.disabled=!ott;vtt.style.opacity=ott?"1":".3";vtt.textContent="I followed on TikTok";document.getElementById("h-tt").textContent="Tap to open, then verify below";}
+  var d=(tg?1:0)+(yt?1:0)+(tt?1:0);
+  document.getElementById("spfill").style.width=(d*33.33)+"%";
+  var db=document.getElementById("dlbtn");
+  if(tg&&yt&&tt){db.className="dlbtn go";db.textContent="Download "+C[cur].n;}
+  else{db.className="dlbtn";db.textContent="Complete tasks to unlock";}
+  var btn=document.getElementById("cbtn-"+cur);
+  if(btn){
+    if(tg&&yt&&tt){btn.className="ccbtn bopen";btn.textContent="Download";}
+    else{btn.className="ccbtn blk";btn.textContent="Unlock";}
+  }
+}
+function didOpen(t){
+  var s=gs(cur);s[t+"Opened"]=true;ss(cur,s);
+  setTimeout(function(){render();toast("Tap verify below","tdark");},800);
+}
+function verify(t){
+  var s=gs(cur);
+  var labels={tg:"Telegram channel",yt:"YouTube channel",tt:"TikTok account"};
+  var names={tg:"Telegram",yt:"YouTube",tt:"TikTok"};
+  if(!s[t+"Opened"]){toast("Open the "+labels[t]+" first","torange");return;}
+  if(s[t+"Done"])return;
+  var b=document.getElementById("vbtn-"+t);
+  b.disabled=true;b.innerHTML='<span class="spin">o</span> Checking...';
+  setTimeout(function(){s[t+"Done"]=true;ss(cur,s);render();toast(names[t]+" verified","tgreen");},1500);
+}
+function doDownload(){
+  var s=gs(cur);
+  if(!s.tgDone||!s.ytDone||!s.ttDone)return;
+  window.open(C[cur].u,"_blank");
+  closeSheet();
+  toast("Opening download...","tgreen");
+}
+(function(){
+  Object.keys(C).forEach(function(k){
+    var s=gs(k);
+    if(s.tgDone&&s.ytDone&&s.ttDone){
+      var b=document.getElementById("cbtn-"+k);
+      if(b){b.className="ccbtn bopen";b.textContent="Download";}
+      var c=document.getElementById("card-"+k);
+      if(c)c.classList.add("unlocked");
+    }
+  });
+})();
+var io=new IntersectionObserver(function(e){
+  e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("show");io.unobserve(x.target);}});
+},{threshold:.07});
+document.querySelectorAll(".rev").forEach(function(el){io.observe(el);});
+var g=document.getElementById("cfg-grid");
+if(g)Array.from(g.children).forEach(function(c,i){c.style.transitionDelay=(i*.05)+"s";});
+function toast(msg,cls){
+  var t=document.getElementById("toast");
+  t.textContent=msg;t.className="toast show "+cls;
+  clearTimeout(t._t);t._t=setTimeout(function(){t.className="toast";},2500);
+}
+if(window.matchMedia("(prefers-reduced-motion:reduce)").matches){
+  document.querySelectorAll(".blob1,.blob2").forEach(function(el){el.style.display="none";});
+}
+</script>
+</body>
+</html>
